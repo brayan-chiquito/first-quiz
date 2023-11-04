@@ -21,6 +21,7 @@ public class Question6Test {
     assertNotNull(vm);
   }
 
+  //capturar exception
   @Test
   public void drinkNotFree() {
     VendingMachine vm = VendingMachineImpl.getInstance();
@@ -44,6 +45,7 @@ public class Question6Test {
     assertEquals(drink.getName(), "ScottCola");
   }
 
+  @Test
   public void machineResets() throws Exception {
     VendingMachine vm = VendingMachineImpl.getInstance();
 
