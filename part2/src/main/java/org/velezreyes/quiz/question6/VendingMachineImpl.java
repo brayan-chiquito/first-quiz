@@ -1,5 +1,7 @@
 package org.velezreyes.quiz.question6;
 
+import java.util.List;
+
 public class VendingMachineImpl {
 
   public static VendingMachine getInstance() {
@@ -13,21 +15,20 @@ public class VendingMachineImpl {
       @Override
       public Drink pressButton(String name) throws NotEnoughMoneyException, UnknownDrinkException {
 
+          List<String> listDrink = List.of("ScottCola", "KarenTea");
+          if("ScottCola".equals(name) && money < 0.75){
+              throw new NotEnoughMoneyException();
+          }
+          if("KarenTea".equals(name) && money < 1.0){
+                  throw new NotEnoughMoneyException();
+          }
+          if (listDrink.stream().noneMatch(elemento -> elemento.equals(name))){
+                  throw new UnknownDrinkException();
+          }
+          money = 0.0;
 
-        if("ScottCola".equals(name) && money < 0.75){
-          throw new NotEnoughMoneyException();
-        }
-        if("KarenTea".equals(name) && money < 1.0){
-          throw new NotEnoughMoneyException();
-        }
-        if (!("ScottCola".equals(name) || "KarenTea".equals(name))){
-          throw new UnknownDrinkException();
-        }
 
-        money = 0.0;
-
-
-        return retunrDrink(name);
+          return retunrDrink(name);
 
       }
       public Drink retunrDrink(String name){
